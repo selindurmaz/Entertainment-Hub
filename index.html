@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎬 Entertainment Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-animation"></div>
+
+    <!-- LOGIN MODAL -->
+    <div class="login-overlay" id="loginOverlay">
+      <div class="login-container">
+        <div class="login-visual">
+          <div class="login-visual-content">
+            <div class="floating-icons">
+              <span class="float-icon">🎬</span>
+              <span class="float-icon">📺</span>
+              <span class="float-icon">🌸</span>
+              <span class="float-icon">🍿</span>
+              <span class="float-icon">⭐</span>
+            </div>
+            <h2>Welcome to<br /><span>Entertainment Hub</span></h2>
+            <p>Discover amazing movies, series & anime</p>
+          </div>
+        </div>
+        <div class="login-form-section">
+          <div class="login-tabs">
+            <button class="login-tab active" data-form="login">Sign In</button>
+            <button class="login-tab" data-form="register">Sign Up</button>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <form class="auth-form active" id="loginForm">
+            <h3>Welcome Back!</h3>
+            <p class="form-subtitle">Sign in to continue your journey</p>
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input
+                type="text"
+                id="loginUsername"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="form-options">
+              <label class="remember-me">
+                <input type="checkbox" id="rememberMe" />
+                <span class="checkmark"></span>
+                Remember me
+              </label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+            <button type="submit" class="auth-btn">
+              <span>Sign In</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <div class="auth-message" id="loginMessage"></div>
+          </form>
+
+          <!-- REGISTER FORM -->
+          <form class="auth-form" id="registerForm">
+            <h3>Create Account</h3>
+            <p class="form-subtitle">Join our community today</p>
+            <div class="input-group">
+              <span class="input-icon">👤</span>
+              <input
+                type="text"
+                id="registerUsername"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <span class="input-icon">📧</span>
+              <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="registerPassword"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <span class="input-icon">🔐</span>
+              <input
+                type="password"
+                id="registerConfirm"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+            <button type="submit" class="auth-btn register-btn">
+              <span>Create Account</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <div class="auth-message" id="registerMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div class="app-container" id="appContainer">
+      <header>
+        <div class="header-top">
+          <h1 class="logo">🎬 Entertainment Hub</h1>
+          <div class="user-section">
+            <span class="welcome-text" id="welcomeText">Welcome, Guest</span>
+            <button class="logout-btn" id="logoutBtn">
+              <span>Logout</span>
+              <span class="logout-icon">🚪</span>
+            </button>
+          </div>
+        </div>
+        <p class="tagline">Films • Series • Anime</p>
+
+        <!-- SEARCH BAR -->
+        <div class="search-container">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search movies, series, anime..."
+              autocomplete="off"
+            />
+            <button class="clear-search" id="clearSearch">✕</button>
+          </div>
+          <div class="search-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="movies">🎬 Movies</button>
+            <button class="filter-btn" data-filter="series">📺 Series</button>
+            <button class="filter-btn" data-filter="anime">🌸 Anime</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- SEARCH RESULTS -->
+      <div class="search-results-container" id="searchResults">
+        <div class="search-results-header">
+          <h2>Search Results</h2>
+          <span class="results-count" id="resultsCount">0 results</span>
+        </div>
+        <div class="card-grid" id="searchResultsGrid"></div>
+        <div class="no-results" id="noResults">
+          <span class="no-results-icon">🔎</span>
+          <p>No results found</p>
+          <span class="no-results-hint">Try different keywords</span>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="tab-container" id="mainContent">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="movies">🎬 Films</button>
+          <button class="tab-btn" data-tab="series">📺 Series</button>
+          <button class="tab-btn" data-tab="anime">🌸 Anime</button>
+        </div>
+
+        <div class="tab-content active" id="movies">
+          <div class="card-grid" id="moviesGrid"></div>
+        </div>
+
+        <div class="tab-content" id="series">
+          <div class="card-grid" id="seriesGrid"></div>
+        </div>
+
+        <div class="tab-content" id="anime">
+          <div class="card-grid" id="animeGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal" id="modal">
+        <div class="modal-poster-section">
+          <img class="modal-poster" id="modalPoster" src="" alt="Poster" />
+          <div class="modal-poster-overlay"></div>
+          <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <div class="modal-meta" id="modalMeta"></div>
+          <div class="modal-stars" id="modalStars"></div>
+        </div>
+        <div class="modal-body">
+          <p class="modal-description" id="modalDesc"></p>
+          <div class="genres" id="modalGenres"></div>
+
+          <div class="reviews-section">
+            <h3 class="reviews-title">💬 Reviews</h3>
+            <div class="review-list" id="reviewList"></div>
+
+            <div class="review-form">
+              <h4 class="form-title">✏️ Add a Review</h4>
+              <div id="formMessage"></div>
+              <div class="form-group">
+                <label>Your Name</label>
+                <input
+                  type="text"
+                  id="reviewName"
+                  placeholder="Enter Your Name..."
+                />
+              </div>
+              <div class="form-group">
+                <label>Your Review</label>
+                <textarea
+                  id="reviewText"
+                  placeholder="What are you thinking?"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Add an Image (Optional)</label>
+                <div class="image-upload-area" id="imageUploadArea">
+                  <input
+                    type="file"
+                    id="reviewImage"
+                    accept="image/*"
+                    onchange="previewImage(event)"
+                  />
+                  <div class="upload-icon">📷</div>
+                  <div class="upload-text">
+                    Click or drag to upload an image
+                  </div>
+                  <div class="upload-hint">PNG, JPG, GIF - Max 5MB</div>
+                </div>
+                <div class="image-preview-container" id="imagePreviewContainer">
+                  <img
+                    class="image-preview"
+                    id="imagePreview"
+                    src=""
+                    alt="Preview"
+                  />
+                  <button
+                    class="remove-image-btn"
+                    onclick="removeImage()"
+                    type="button"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Your Rating</label>
+                <div class="rating-select">
+                  <div class="rating-option">
+                    <input type="radio" name="rating" id="r1" value="1" />
+                    <label for="r1"
+                      ><span class="star-icon">⭐</span><span>1</span></label
+                    >
+                  </div>
+                  <div class="rating-option">
+                    <input type="radio" name="rating" id="r2" value="2" />
+                    <label for="r2"
+                      ><span class="star-icon">⭐</span><span>2</span></label
+                    >
+                  </div>
+                  <div class="rating-option">
+                    <input type="radio" name="rating" id="r3" value="3" />
+                    <label for="r3"
+                      ><span class="star-icon">⭐</span><span>3</span></label
+                    >
+                  </div>
+                  <div class="rating-option">
+                    <input type="radio" name="rating" id="r4" value="4" />
+                    <label for="r4"
+                      ><span class="star-icon">⭐</span><span>4</span></label
+                    >
+                  </div>
+                  <div class="rating-option">
+                    <input
+                      type="radio"
+                      name="rating"
+                      id="r5"
+                      value="5"
+                      checked
+                    />
+                    <label for="r5"
+                      ><span class="star-icon">⭐</span><span>5</span></label
+                    >
+                  </div>
+                </div>
+              </div>
+              <button class="submit-btn" onclick="submitReview()">
+                💾 Save Review
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX for Full Image View -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close">×</span>
+      <img id="lightboxImage" src="" alt="Full Image" />
+    </div>
+
+    <footer>
+      <p>Made with ❤️ Love</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
